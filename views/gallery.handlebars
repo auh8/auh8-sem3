@@ -12,7 +12,7 @@
 	</head>
 	<body>
 		<header>
-		<h1>Secure Page</h1>
+		<h1>Items for Sale</h1>
 		<a href="/logout">Log out</a>
 		</header>
 		{{#if msg}}
@@ -21,8 +21,16 @@
 			</aside>
 		{{/if}}
 		<main>
-		<p>This is a secure page. Users need to have a valid account and be logged in to see it.</p>
-		<p><a href="/">Home page</a></p>
-		</main>
+        <table>
+        <tr><th>Photo</th><th>Item Name</th><th>Selling Price</th></tr>
+        {{#each records}}
+          <tr>
+            <td><img src="avatars/{{photo}}" /></td>
+            <td>{{itemname}}</td>
+              <td>{{sellingprice}}</td>
+          </tr>
+        {{/each}}
+        </table>
+        </main>
 	</body>
 </html>
