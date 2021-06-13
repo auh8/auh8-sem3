@@ -1,0 +1,40 @@
+name: Deploy to Heroku (Cloud)
+on:
+  push:
+    branches:
+      - master
+      - main
+jobs:
+  Linter: #first test - called "Linter"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use NodeJS
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
+      - run: npm install
+      - run: npm run linter
+  Unit-Tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use NodeJS
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
+      - name: Install Testing Tools
+        run: npm install
+      - name: Run Test Suite
+        run: npm test
+  deploy:
+    needs: [Linter, Unit-Tests]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: akhileshns/heroku-deploy@v3.6.8 # This is the action
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: "auh8-sem3"
+          heroku_email: "auh8@uni.coventry.ac.uk"
+          branch: "master"
