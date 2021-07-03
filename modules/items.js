@@ -56,9 +56,7 @@ class Items {
       await this.db.close()
     }
     
-    
 }
-
 export default Items
 
 

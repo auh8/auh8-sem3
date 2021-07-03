@@ -1,6 +1,4 @@
-
 /* main.js */
-
 window.addEventListener('DOMContentLoaded', () => {
 	console.log('DOMContentLoaded')
     if(document.querySelector('aside')) {
@@ -9,7 +7,6 @@ window.addEventListener('DOMContentLoaded', () => {
       window.setTimeout( () => {
       document.querySelector('aside').hidden = true
       }, delay)
-        
     }
     if(document.querySelector('input')) {
       document.querySelectorAll('input').forEach( element => {
@@ -24,5 +21,4 @@ window.addEventListener('DOMContentLoaded', () => {
         })
       }, false)
     }
-    
 })

@@ -1,9 +1,6 @@
 
 import test from 'ava'
 import Accounts from '../modules/accounts.js'
-
-
-
 test('REGISTER : register a duplicate username', async test => {
 	test.plan(1)
 	const account = await new Accounts()
