@@ -34,11 +34,11 @@
           <form method="post" action="/gallery/add" enctype="multipart/form-data">
             <p>
               <label for="itemname">Name of Item</label><br />
-              <input type="text" name="itemname" placeholder="item name" value="" autofocus required />
+              <input type="text" name="itemname" placeholder="item name" value="" data-msg="custom message" autofocus required />
             </p>
             <p>
-              <label for="avatar">Item Picture</label><br />
-              <input type="file" name="avatar" accept="image/*" />
+              <label for="photo">Item Picture</label><br />
+              <input type="file" name="photo" accept="image/*" />
             </p>
             <p>
               <label for="itemdescription">Item Description</label><br />

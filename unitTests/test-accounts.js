@@ -2,19 +2,7 @@
 import test from 'ava'
 import Accounts from '../modules/accounts.js'
 
-test('REGISTER : register and log in with a valid account', async test => {
-	test.plan(1)
-	const account = await new Accounts() // no database specified so runs in-memory
-	try {
-		await account.register('doej', 'password', 'doej@gmail.com')
-	  const login = await account.login('doej', 'password')
-		test.is(login, true, 'unable to log in')
-	} catch(err) {
-		test.fail('error thrown')
-	} finally {
-		account.close()
-	}
-})
+
 
 test('REGISTER : register a duplicate username', async test => {
 	test.plan(1)
@@ -83,20 +71,6 @@ test('REGISTER : error if duplicate email', async test => {
 	}
 })
 
-test('LOGIN    : valid username and password', async test => {
-	test.plan(1)
-	const account = await new Accounts()
-	try {
-		await account.testSetup()
-		const login = await account.login('bloggsj', 'p455w0rd')
-		test.is(login, true, 'unable to log in')
-	} catch(err) {
-		test.fail('error thrown')
-		console.log(err)
-	} finally {
-		account.close()
-	}
-})
 
 test('LOGIN    : invalid username', async test => {
 	test.plan(1)

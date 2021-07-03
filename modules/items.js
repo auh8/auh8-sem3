@@ -2,6 +2,8 @@
 /** @Module Items */
 
 import sqlite from 'sqlite-async'
+import mime from 'mime-types'
+import fs from 'fs-extra'
 
 class Items {
     
@@ -29,6 +31,30 @@ class Items {
      }
      return items
    }
+    async add(data) {
+      
+      console.log(data)
+      let filename
+      if(data.fileName) {
+          filename = `${Date.now()}.${mime.extension(data.fileType)}`
+          console.log(filename)
+          await fs.copy(data.filePath, `public/avatars/${filename}`)
+      }
+      try {
+        const sql = `INSERT INTO items(userid, photo, itemname, sellingprice)\
+                      VALUES("${data.account}", "${filename}", "${data.itemname}", "${data.sellingprice}")`
+        console.log(sql)
+        await this.db.run(sql)
+        return true
+      } catch(err) {
+        console.log(err)
+        throw(err)
+      }
+      
+    }
+    async close() {
+      await this.db.close()
+    }
     
     
 }
