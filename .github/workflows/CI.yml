@@ -2,7 +2,7 @@
 # .github/workflows/CI.yml
 
 =======
->>>>>>> feature1
+>>>>>>> feature2
 name: CI Pipeline
 
 on:
