@@ -83,20 +83,6 @@ test('REGISTER : error if duplicate email', async test => {
 	}
 })
 
-test('LOGIN    : valid username and password', async test => {
-	test.plan(1)
-	const account = await new Accounts()
-	try {
-		await account.testSetup()
-		const login = await account.login('bloggsj', 'p455w0rd')
-		test.is(login, true, 'unable to log in')
-	} catch(err) {
-		test.fail('error thrown')
-		console.log(err)
-	} finally {
-		account.close()
-	}
-})
 
 test('LOGIN    : invalid username', async test => {
 	test.plan(1)

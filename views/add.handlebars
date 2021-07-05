@@ -1,0 +1,58 @@
+
+<!doctype html>
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Gallery - Items List</title>
+		<meta name="description" content="form to add new books">
+		<meta name="author" content="Mark Tyers">
+		<link href="{{host}}/style.css" type="text/css" rel="stylesheet" />
+		<script type="module" src="{{host}}/main.js"></script>
+        <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+        <script>tinymce.init({selector:'textarea'});</script>
+        <script>
+            function fetch()
+            {
+                var get = document.getElementById("get").value;
+                document.getElementById("put").value = get;
+            }
+        </script>
+        
+	</head>
+	<body>
+		<header>
+		<h1>Items for Sale</h1>
+		<a href="/logout">Log out</a>
+		</header>
+		{{#if msg}}
+ 			<aside>
+				<p class="msg">{{msg}}</p>
+			</aside>
+		{{/if}}
+		<main>
+          <form method="post" action="/gallery/add" enctype="multipart/form-data">
+            <p>
+              <label for="itemname">Name of Item</label><br />
+              <input type="text" name="itemname" placeholder="item name" value="" data-msg="custom message" autofocus required />
+            </p>
+            <p>
+              <label for="photo">Item Picture</label><br />
+              <input type="file" name="photo" accept="image/*" />
+            </p>
+            <p>
+              <label for="itemdescription">Item Description</label><br />
+              <textarea name="itemdescription" rows="6" cols="35" style="width:400;" placeholder="detailed item description"></textarea>
+            </p>
+            <p>
+              <label for="sellingprice">Selling Pice (Max:£250)</label><br />
+              <input type="range" min="0" max="250" value="50" name="sellingprice" id="get" step="5" onchange="fetch()" /><br>
+              <input type="text" id="put" />
+            </p>
+            <p><input type="submit" value="Add Selling Item"></p>
+            </form>
+
+        </main>
+ 
+	</body>
+</html>

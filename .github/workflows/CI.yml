@@ -1,5 +1,8 @@
+<<<<<<< HEAD
 # .github/workflows/CI.yml
 
+=======
+>>>>>>> feature1
 name: CI Pipeline
 
 on:

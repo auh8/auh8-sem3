@@ -59,22 +59,13 @@ class Accounts {
 		let sql = `SELECT count(id) AS count FROM users WHERE user="${username}";`
 		const records = await this.db.get(sql)
 		if(!records.count) throw new Error(`username "${username}" not found`)
-		sql = `SELECT pass FROM users WHERE user = "${username}";`
+		sql = `SELECT id, pass FROM users WHERE user = "${username}";`
 		const record = await this.db.get(sql)
 		const valid = await bcrypt.compare(password, record.pass)
 		if(valid === false) throw new Error(`invalid password for account "${username}"`)
 		return true
 	}
 
-	async testSetup() {
-		// default password is "p455w0rd"
-		const defaultPassword = '$2b$10$gL33obKAFUT5DK3pEbh72OIHztsWBniBBh.PdeKOrF1yr5KFAsdZO'
-		const records = [
-			`INSERT INTO users(user, pass, email) VALUES("bloggsj", "${defaultPassword}", "bloggs@gmail.com")`,
-			`INSERT INTO users(user, pass, email) VALUES("doej", "${defaultPassword}", "doej@gmail.com")`
-		]
-		records.forEach( async sql => await this.db.run(sql))
-	}
 
 	async close() {
 		await this.db.close()
